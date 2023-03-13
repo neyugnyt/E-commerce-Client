@@ -10,6 +10,7 @@
           "-ms-filter"
         ]
       }
-    ]
+    ],
+    "no-inline-styles": "off"
   }
 }

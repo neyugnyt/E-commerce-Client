@@ -9,19 +9,15 @@
       </select>
       <h5 class="ml-3">Brands</h5>
       <ul class="list-group my-3">
-        <li class="list-group-item active" aria-current="true">An active item</li>
-        <li class="list-group-item">A second item</li>
-        <li class="list-group-item">A third item</li>
-        <li class="list-group-item">A fourth item</li>
-        <li class="list-group-item">And a fifth one</li>
+        <li class="list-group-item" *ngFor="let brand of brands">
+          {{brand.name}}
+        </li>
       </ul>
       <h5 class="ml-3">Types</h5>
       <ul class="list-group my-3">
-        <li class="list-group-item active" aria-current="true">An active item</li>
-        <li class="list-group-item">A second item</li>
-        <li class="list-group-item">A third item</li>
-        <li class="list-group-item">A fourth item</li>
-        <li class="list-group-item">And a fifth one</li>
+        <li class="list-group-item" *ngFor="let type of types">
+          {{type.name}}
+        </li>
       </ul>
     </section>
 
@@ -39,8 +35,8 @@
         </div>
       </div>
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        <div class="col" *ngFor="let product of products">
-          <app-shop-item></app-shop-item>
+        <div class="col" *ngFor="let item of products">
+          <app-shop-item [product]="item"></app-shop-item>
         </div>
       </div>
     </section>

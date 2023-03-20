@@ -2,20 +2,23 @@
   <div class="row">
     <section class="col-3">
       <h5 class="ml-3">Sort</h5>
-      <select aria-label="label for the select" class="custom-select" >
-        <option selected>Alphabetical</option>
-        <option>Price:Low to High</option>
-        <option>Price: High to Low</option>
+      <select aria-label="label for the select" class="custom-select"
+        (change)="onSortSelected($any($event.target).value)">
+        <option *ngFor="let sort of sortOptions" [value]="sort.value">
+          {{sort.name}}
+        </option>
       </select>
       <h5 class="ml-3">Brands</h5>
       <ul class="list-group my-3">
-        <li class="list-group-item" *ngFor="let brand of brands">
+        <li class="list-group-item" *ngFor="let brand of brands" [class.active]="brand.id === this.shopParams.brandId"
+          [value]="brand.id" (click)="onBrandSelected(brand.id)">
           {{brand.name}}
         </li>
       </ul>
       <h5 class="ml-3">Types</h5>
       <ul class="list-group my-3">
-        <li class="list-group-item" *ngFor="let type of types">
+        <li class="list-group-item" *ngFor="let type of types" [class.active]="type.id === this.shopParams.typeId"
+          [value]="type.id" (click)="onTypeSelected(type.id)">
           {{type.name}}
         </li>
       </ul>
@@ -23,14 +26,18 @@
 
     <section class="col-9">
       <div class="d-flex justify-content-between align-items-center w-full pd-2">
-        <header>
-          <span>Showing <strong>1</strong> of <strong>18</strong> results</span>
-        </header>
+            <app-paging-header
+                [totalCount]="totalCount"
+                [pageSize]="this.shopParams.pageSize"
+                [pageNumber]="this.shopParams.pageNumber"
+            >
+            </app-paging-header>
+
         <div class="form-inline flex flex-row my-2 items-center">
-          <input class="form-control mr-2" style="width: 300px; height: 40px;" placeholder="Search" type="text">
+          <input (keyup.enter)="onSearch()" class="form-control mr-2" #search style="width: 300px; height: 40px;" placeholder="Search" type="text">
           <div class="flex justify-end">
-            <button class="btn btn-outline-primary my-2">Search</button>
-            <button class="btn btn-outline-success my-2">Reset</button>
+            <button (click)="onSearch()" class="btn btn-outline-primary my-2">Search</button>
+            <button (click)="onReset()" class="btn btn-outline-success my-2">Reset</button>
           </div>
         </div>
       </div>
@@ -38,6 +45,14 @@
         <div class="col" *ngFor="let item of products">
           <app-shop-item [product]="item"></app-shop-item>
         </div>
+      </div>
+      <div class="d-flex justify-content-center" *ngIf="totalCount > 0">
+          <app-pager
+            [totalCount]="totalCount"
+            [pageSize]="shopParams.pageSize"
+            (pageChanged)="onPageChanged($event)"
+          >
+          </app-pager>
       </div>
     </section>
   </div>

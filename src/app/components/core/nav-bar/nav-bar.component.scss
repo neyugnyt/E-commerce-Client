@@ -4,9 +4,19 @@
     min-width: 25px;
     border-radius: 50%;
     font-size: 1em;
-    background: blueviolet;
+    background: rgb(43, 80, 226);
     color: white;
     text-align: center;
     top: -12px;
     right: -15px;
+}
+
+div > nav > a{
+    text-decoration: none;
+    color: #343a40;
+
+    &.active{
+        color: royalblue;
+        
+    }
 }

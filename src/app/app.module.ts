@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { CoreModule } from "./components/core/core.module";
 import { ShopModule } from './components/shop/shop.module';
+import { HomeModule } from './components/home/home.module';
 
 @NgModule({
     declarations: [
@@ -20,7 +21,7 @@ import { ShopModule } from './components/shop/shop.module';
         BrowserAnimationsModule,
         HttpClientModule,
         CoreModule,
-        ShopModule
+        HomeModule
     ]
 })
 export class AppModule { }

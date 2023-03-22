@@ -6,6 +6,6 @@ export const environment = {
   name: 'dev',
   production: false,
   iswithCredentials: true,
-  host: 'https://localhost:7267',
+  apiUrl: 'https://localhost:7267/api/',
   client: 'https://shopclothing-team01-fe-user.herokuapp.com/'
 };

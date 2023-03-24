@@ -8,3 +8,10 @@
 
 /* Importing Datepicker SCSS file. */
 @import "node_modules/ngx-bootstrap/datepicker/bs-datepicker";
+
+
+
+label.xng-breadcrumb-trail{
+    margin-bottom: 0;
+    color: blue;
+}

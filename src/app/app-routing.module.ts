@@ -4,6 +4,7 @@ import { NotFoundComponent } from './components/core/not-found/not-found.compone
 import { ServerErrorComponent } from './components/core/server-error/server-error.component';
 import { TestErrorComponent } from './components/core/test-error/test-error.component';
 import { HomeComponent } from './components/home/home.component';
+import { AuthGuard } from './components/core/guards/auth.guard';
 
 
 const routes: Routes = [
@@ -15,7 +16,7 @@ const routes: Routes = [
   data: {breadcrumb: 'Shop'}},
   {path: 'basket', loadChildren: () => import('./components/basket/basket.module').then(mod => mod.BasketModule),
   data: {breadcrumb: 'Basket'}},
-  {path: 'checkout', loadChildren: () => import('./components/checkout/checkout.module').then(mod => mod.CheckoutModule),
+  {path: 'checkout', canActivate:[AuthGuard], loadChildren: () => import('./components/checkout/checkout.module').then(mod => mod.CheckoutModule),
   data: {breadcrumb: 'Checkout'}},
   {path: 'account', loadChildren: () => import('./components/account/account.module').then(mod => mod.AccountModule),
   data: {breadcrumb: {skip: true}}},

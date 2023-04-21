@@ -1,1 +1,52 @@
-<p>register works!</p>
+<div class="d-flex justify-content-center mt-5">
+    <div class="col-3">
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <div class="text-center mb-4">
+                <h1 class="h3 mb-3 font-weight-normal">Register</h1>
+            </div>
+
+            <div class="form-label-group">
+                <input formControlName="displayName" type="text" id="inputDisplayName" class="form-control"
+                    placeholder="Name">
+                <label for="inputDisplayName">Name</label>
+                <span class="text-danger" *ngIf="regFormControl.displayName.invalid 
+                  && regFormControl.displayName.touched
+                    && regFormControl.displayName.errors?.required">
+                    Email address is required
+                </span>
+            </div>
+
+            <div class="form-label-group">
+                <input formControlName="email" type="email" id="inputEmail" class="form-control"
+                    placeholder="Email address">
+                <label for="inputEmail">Email address</label>
+                <span class="text-danger" *ngIf="regFormControl.email.invalid 
+                && regFormControl.email.touched
+                 && regFormControl.email.errors?.required">
+                    Email address is required
+                </span>
+                <span class="text-danger" *ngIf="regFormControl.email.invalid 
+                && regFormControl.email.touched
+                && regFormControl.email.errors?.email">
+                    Email address is not valid
+                </span>
+                <span class="text-danger" *ngIf="regFormControl.email.errors?.emailexists">
+                    Email address is in use
+                </span>
+            </div>
+
+            <div class="form-label-group">
+                <input formControlName="password" type="password" id="inputPassword" class="form-control"
+                    placeholder="Password">
+                <label for="inputPassword">Password</label>
+                <span class="text-danger" *ngIf="regFormControl.password.invalid 
+                && regFormControl.password.touched
+                && regFormControl.password.errors?.required">
+                    Password is required
+                </span>
+            </div>
+            <button [disabled]="registerForm.invalid" class="btn btn-lg btn-primary btn-block"
+                type="submit">Register</button>
+        </form>
+    </div>
+</div>

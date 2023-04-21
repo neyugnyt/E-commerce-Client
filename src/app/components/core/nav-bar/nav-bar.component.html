@@ -18,7 +18,24 @@ bg-white border-bottom shadow-sm fixed-top">
     </ng-container>
 
     <ng-container *ngIf="currentUser$ | async">
-      <a style="text-decoration: solid;"> Welcome {{(currentUser$ | async)?.displayName}} </a>
+      <div class="dropdown ml-3 mr-5" dropdown>
+        <a class="dropdown-toggle" style="text-decoration: solid; cursor: pointer;" dropdownToggle>
+           <strong>Welcome {{(currentUser$ | async)?.displayName}} </strong>
+        </a>
+
+        <div class="dropdown-menu dropdown-menu-right" style="cursor: pointer;" *dropdownMenu>
+          <a routerLink="/basket" class="dropdown-item d-flex align-items-center py-2">
+            <i class="fa fa-shopping-cart mr-3"> View Basket</i>
+          </a>
+          <a routerLink="/orders" class="dropdown-item d-flex align-items-center py-2">
+            <i class="fa fa-history mr-3"> View Orders</i>
+          </a> 
+          <div class="dropdown-divider"></div>
+          <a (click)="logout()" class="dropdown-item d-flex align-items-center py-2">
+            <i class="fa fa-sign-out mr-3"> Logout</i>
+          </a>
+        </div>
+      </div>
     </ng-container>
   </div>
 </div>

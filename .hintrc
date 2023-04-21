@@ -14,6 +14,7 @@
     "no-inline-styles": "off",
     "axe/forms": "off",
     "button-type": "off",
-    "axe/name-role-value": "off"
+    "axe/name-role-value": "off",
+    "typescript-config/strict": "off"
   }
 }

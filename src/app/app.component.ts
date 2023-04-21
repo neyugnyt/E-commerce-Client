@@ -4,6 +4,7 @@ import { BasketService } from './components/basket/basket.service';
 import { IPagination } from './libs/shared/models/pagination';
 import { IProduct } from './libs/shared/models/product';
 import { ulities } from './libs/shared/tailwind-magika';
+import { AccountService } from './components/account/account.service';
 
 @Component({
   selector: 'app-root',
@@ -15,10 +16,15 @@ export class AppComponent implements OnInit{
   title = 'E-commerce.Client';
   
   uliti = ulities;
-  constructor(private basketService: BasketService) {
+  constructor(private accountService: AccountService ,private basketService: BasketService) {
    
   }
-  ngOnInit(): void {
+  ngOnInit(){
+    this.loadBasket()
+    this.loadCurrentUser()
+  }
+
+  loadBasket(){
     const basketId = localStorage.getItem('basket_id');
     if(basketId){
       this.basketService.getBasket(basketId).subscribe(() => {
@@ -27,5 +33,14 @@ export class AppComponent implements OnInit{
         console.log(error);
       });
     }
+  }
+
+  loadCurrentUser(){
+    const token = localStorage.getItem('token')
+      this.accountService.loadCurrentUser(token).subscribe(() => {
+        console.log('loaded user')
+      }, error =>{
+        console.log(error)
+      })
   }
 }

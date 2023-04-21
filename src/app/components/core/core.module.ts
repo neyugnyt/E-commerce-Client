@@ -8,6 +8,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { ToastrModule } from 'ngx-toastr';
 import { SectionHeaderComponent } from './section-header/section-header.component';
 import { BreadcrumbModule } from 'xng-breadcrumb';
+import { SharedModule } from 'src/app/libs/shared/shared.module';
 
 
 
@@ -17,6 +18,7 @@ import { BreadcrumbModule } from 'xng-breadcrumb';
     CommonModule,
     RouterModule,
     BreadcrumbModule,
+    SharedModule,
     ToastrModule.forRoot({
       positionClass:'toast-top-right',
       preventDuplicates: true

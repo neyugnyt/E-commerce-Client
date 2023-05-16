@@ -14,7 +14,7 @@ import { JwtInterceptor } from './components/core/Interceptors/Jwt.interceptor';
 
 @NgModule({
     declarations: [
-        AppComponent,
+        AppComponent
     ],
     providers: [
         {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},

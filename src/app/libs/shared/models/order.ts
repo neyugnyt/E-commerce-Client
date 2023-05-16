@@ -9,7 +9,7 @@ export interface IOrderToCreate {
 export interface IOrder {
     id: number;
     buyerEmail: string;
-    orderDate: string;
+    oderDate: string;
     shipToAddress: IAddress;
     deliveryMethod: string;
     shippingPrice: number;

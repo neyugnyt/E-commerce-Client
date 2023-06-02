@@ -31,6 +31,7 @@ export class ItemDetailsComponent implements OnInit{
       product =>{
         this.product = product
         this.bcService.set('@itemDetails', product.name);
+        console.log(product)
       }, error =>{
         console.log(error)
       }

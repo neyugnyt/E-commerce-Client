@@ -6,7 +6,7 @@ import {BsDropdownModule} from 'ngx-bootstrap/dropdown'
 import { PagingHeaderComponent } from './paging-header/paging-header.component';
 import { PagerComponent } from './pager/pager.component';
 import { OrderTotalsComponent } from './order-totals/order-totals.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {CdkStepperModule} from '@angular/cdk/stepper';
 import { StepperComponent } from './stepper/stepper.component';
 import { TextInputComponent } from './text-input/text-input.component';
@@ -22,6 +22,7 @@ import { RouterModule } from '@angular/router';
     BsDropdownModule.forRoot(),
     ReactiveFormsModule,
     CdkStepperModule,
+    FormsModule,
     RouterModule
     
   ],
@@ -34,6 +35,7 @@ import { RouterModule } from '@angular/router';
     ReactiveFormsModule,
     BsDropdownModule,
     CdkStepperModule,
+    FormsModule,
     StepperComponent,
     TextInputComponent,
     BasketSummaryComponent

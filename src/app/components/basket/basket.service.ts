@@ -56,7 +56,7 @@ export class BasketService {
             .subscribe((res: IBasket) =>{
               this.basketSource.next(res)
               this.calculateTotal();
-            },error =>{
+            }, error =>{
               console.log(error);
             });
   }

@@ -7,12 +7,13 @@ import {map} from 'rxjs/operators'
 import { ShopParams } from 'src/app/libs/shared/models/shopParams';
 import { IProduct } from 'src/app/libs/shared/models/product';
 import { of } from 'rxjs';
+import { environment } from 'src/app/libs/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class ShopService {
 
-  baseUrl = 'https://localhost:7267/api/'
+  baseUrl = environment.apiUrl
   products: IProduct[] = []
   brands: IBrand[] = []
   types: IType[] = []
@@ -57,7 +58,6 @@ export class ShopService {
       .pipe(
         map(response => {
           this.products = [...this.products, ...response.body.data]
-          console.log([...response.body.data])
           this.pagination = response.body
           return this.pagination;
         })

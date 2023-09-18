@@ -21,7 +21,7 @@ export class OrderComponent implements OnInit{
   getOrders(){
     this.orderService.getOrders().subscribe(res => {
       this.orders = res
-      console.log(res)
+      
     })
   }
 

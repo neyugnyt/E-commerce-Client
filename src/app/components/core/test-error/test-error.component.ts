@@ -21,21 +21,21 @@ export class TestErrorComponent implements OnInit{
   
   get404Error(){
     this.http.get(this.baseUrl + 'ErrorHandling/notfound').subscribe(response =>{
-      console.log(response);
+      
     }, error =>{
       console.log(error)
     })
   }
   get500Error(){
     this.http.get(this.baseUrl + 'ErrorHandling/servererror').subscribe(response =>{
-      console.log(response);
+      
     }, error =>{
       console.log(error)
     })
   }
   getBadRequestError(){
     this.http.get(this.baseUrl + 'ErrorHandling/badrequest').subscribe(response =>{
-      console.log(response);
+      
     }, error =>{
       console.log(error)
     })

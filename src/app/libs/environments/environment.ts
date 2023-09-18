@@ -7,5 +7,5 @@ export const environment = {
   production: false,
   iswithCredentials: true,
   apiUrl: 'https://localhost:7267/api/',
-  client: 'https://shopclothing-team01-fe-user.herokuapp.com/'
+  client: ''
 };

@@ -20,7 +20,7 @@ export class LoadingInterceptor implements HttpInterceptor{
             return next.handle(req);
         }
         if(req.url.includes('emailexists')){
-            this.busyService.busy();
+            return next.handle(req);
         }
         this.busyService.busy();
         return next.handle(req).pipe(

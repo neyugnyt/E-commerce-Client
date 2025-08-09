@@ -3,7 +3,7 @@ import { AsyncValidatorFn, FormBuilder, FormGroup, Validators } from '@angular/f
 import { AccountService } from '../account.service';
 import { Router } from '@angular/router';
 import { timer, of } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { catchError, map, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-register',
@@ -26,9 +26,9 @@ export class RegisterComponent implements OnInit{
 
   createRegisterForm(){
     this.registerForm = this.formBuilder.group({
-      displayName: [null, [Validators.required]],
+      displayName: [null, [Validators.required,Validators.pattern('^[a-zA-Z0-9]+$')]],
       email: [null, [Validators.required, Validators.email], [this.validateEmailNotTaken()]],
-      password: [null, [Validators.required]]
+      password: [null, [Validators.required,Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*()_+\\-=[\\]{};:\'",.<>/?]).+$')]]
     })
   }
 
@@ -40,22 +40,37 @@ export class RegisterComponent implements OnInit{
     })
   }
 
-  validateEmailNotTaken(): AsyncValidatorFn{
-    return control => {
-      return timer(300).pipe(
-        switchMap(() => {
-          if(!control.value) {
-            return of(null)
-          }
-          return this.accountService.checkEmailExist(control.value).pipe(
-            map(res => {
-              return res ? {emailexists: true} : null
-            })
-          )
-        })
-      )
-    }
+  // validateEmailNotTaken(): AsyncValidatorFn{
+  //   return control => {
+  //     return timer(10).pipe(
+  //       switchMap(() => {
+  //         if(!control.value) {
+  //           return of(null)
+  //         }
+  //         return this.accountService.checkEmailExist(control.value).pipe(
+  //           map(res => {
+  //             return res ? {emailexists: true} : null
+  //           })
+  //         )
+  //       })
+  //     )
+  //   }
 
-  }
+  // }
+  validateEmailNotTaken(): AsyncValidatorFn {
+  return control => {
+    if (!control.value) {
+      return of(null);
+    }
+    return timer(500).pipe(
+      switchMap(() => 
+        this.accountService.checkEmailExist(control.value).pipe(
+          map(res => (res ? { emailexists: true } : null)),
+          catchError(() => of(null))
+        )
+      )
+    );
+  };
+}
 
 }

@@ -12,7 +12,10 @@
                 <span class="text-danger" *ngIf="regFormControl.displayName.invalid 
                   && regFormControl.displayName.touched
                     && regFormControl.displayName.errors?.required">
-                    Email address is required
+                    User name is required
+                </span>
+                <span class="text-danger" *ngIf="regFormControl.displayName.errors?.pattern && regFormControl.displayName.touched">
+                    User name must be alphanumeric
                 </span>
             </div>
 
@@ -43,6 +46,9 @@
                 && regFormControl.password.touched
                 && regFormControl.password.errors?.required">
                     Password is required
+                </span>
+                <span class="text-danger" *ngIf="regFormControl.password.errors?.pattern && regFormControl.password.touched">
+                    Password must have 1 Uppercase, 1 lowercase, 1 number, 1 symbol
                 </span>
             </div>
             <button [disabled]="registerForm.invalid" class="btn btn-lg btn-primary btn-block"

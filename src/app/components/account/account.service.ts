@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, ReplaySubject, map, of } from 'rxjs';
+import { BehaviorSubject, ReplaySubject, catchError, map, of, throwError } from 'rxjs';
 import { environment } from 'src/app/libs/environments/environment';
 import { IAddress } from 'src/app/libs/shared/models/address';
 import { IUser } from 'src/app/libs/shared/models/user';
@@ -57,7 +57,11 @@ export class AccountService {
             localStorage.setItem('token', user.token)
             this.currentUserSource.next(user)
           }
-        })
+        }),
+        catchError(error => {
+        return throwError(() => error);
+      })
+
     )
   }
 
